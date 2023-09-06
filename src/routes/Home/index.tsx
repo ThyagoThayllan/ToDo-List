@@ -3,8 +3,14 @@ import styles from './styles.module.css'
 
 export const Home = () => {
 
-    const [tarefasCriadas, setTarefasCriadas] = useState<number>()
-    const [tarefasConcluidas, setTarefasConcluidas] = useState<number>()
+    type TarefasProps = {
+        status: 'concluida' | 'pendente',
+        tarefa: string
+    }
+
+    const [ tarefas, setTarefas] = useState<TarefasProps[]>([])
+    const [ tarefasCriadas, setTarefasCriadas ] = useState<number>()
+    const [ tarefasConcluidas, setTarefasConcluidas ] = useState<number>()
 
     return (
         <div className={styles.home}>
@@ -21,7 +27,7 @@ export const Home = () => {
                 </header>
 
                 <div className={styles.listaDeAtividades}>
-                    <h1>Atividades</h1>
+                    {tarefas.length === 0 ? (<h1>Lista de Tarefas</h1>) : (<h1>Existe</h1>)}
                 </div>
 
             </div>
