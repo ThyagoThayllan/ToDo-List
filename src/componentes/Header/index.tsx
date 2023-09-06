@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 export function Header() {
     return (
-        <header>
-            <div className={styles.header}>
+        <header className={styles.header}>
+            <div>
                 <img src={logoTodo} />
             </div>
 
