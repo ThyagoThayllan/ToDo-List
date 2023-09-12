@@ -2,10 +2,11 @@
     max-width: 1240px;
     height: 100vh;
     margin: 0 auto;
-    padding-top: 5rem;
+    padding: 5rem 1rem 0;
 }
 
 .homeContainer {
+    padding-top: 2rem;
     display: flex;
     max-width: 736px;
     height: 100%;
@@ -15,7 +16,7 @@
     gap: 2rem;
 }
 
-.homeContainer header {
+.homeContainer div header {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -24,14 +25,22 @@
     color: #4EA8DE;
     font-weight: bold;
 }
+.criadas span {
+    margin-left: 0.5rem;
+}
+
 .concluidas {
     color: #8284FA;
     font-weight: bold;
 }
+.concluidas span {
+    margin-left: 0.5rem;
+}
 
-.homeContainer header div {
+.header {
     display: flex;
-    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .contadorDeTarefa {
@@ -43,7 +52,59 @@
 
 .listaDeAtividades {
     width: 100%;
-    padding: 1.5rem;
+    padding: 4rem 1.5rem;
     border-top: 1px solid #333333;
     border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+.quandoVazio {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+/* FORM */
+.formHome {
+    margin: -4rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 736px;
+    width: 100%;
+}
+
+.inputFormHome {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: #262626;
+    border: 1px solid #0D0D0D;
+    color: #808080;
+    width: 100%;
+} 
+
+.botaoCriarHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid black;
+    background: #1E6F9F;
+    color: #F2F2F2;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.botaoCriarHome:hover {
+    background: #019ef9;
 }
