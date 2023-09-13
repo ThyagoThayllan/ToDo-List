@@ -47,6 +47,7 @@ export const Home = () => {
                 <form className={styles.formHome} onSubmit={handleCreateTask}>
                     <input
                         type="text"
+                        value={task}
                         placeholder='Adicione uma nova tarefa'
                         className={styles.inputFormHome}
                         onChange={handleNewTask}
@@ -84,18 +85,18 @@ export const Home = () => {
                                         <p>Crie tarefas e organize seus itens a cumprir</p>
                                     </div>
                                 </div>)
-                            : (
-                                <div>{
-                                    tasks.map((task) => {
-                                        return (
-                                            <Task
-                                                key={task.key}
-                                                task={task.task}
-                                            />
-                                        )
-                                    })}
-                                </div>
-                            )}
+                            : tasks.map((task) => {
+                                return (
+                                    <Task
+                                        key={task.key}
+                                        task={task.task}
+                                        finished={task.finished}
+                                    />
+                                )
+                            })
+
+
+                        }
                     </div>
                 </div>
             </div>
