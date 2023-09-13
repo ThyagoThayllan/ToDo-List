@@ -4,21 +4,25 @@ import iconeTarefaVazia from '../../assets/empty.svg'
 import addsimbol from '../../assets/add.svg'
 import { Task } from "../../componentes/Tarefa"
 
-interface TarefasProps {
-    key: string,
-    task: string,
-    finished?: boolean
-}
 
 export const Home = () => {
 
+    //  TYPEs
+    interface TarefasProps {
+        key: string,
+        task: string,
+        isTaskFinished: boolean,
+    }
+
     //  STATEs
     const [tasks, setTasks] = useState<TarefasProps[]>([])
-
+    
     const [task, setTask] = useState('')
-
+    
     //  CONSTs
     const createdTasks = tasks.length
+
+    const completedTasks = tasks.filter((task) => task.isTaskFinished === true).length
 
     //  FUNCTIONs
     const handleNewTask = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,12 +37,26 @@ export const Home = () => {
         const newTask: TarefasProps = {
             key: task,
             task: task,
-            finished: false
+            isTaskFinished: false
         }
 
         //  Adicionando a nova tarefa à Lista de Array ***tarefas***.
         setTasks([...tasks, newTask])
         setTask('')
+    }
+
+    const updateTaskStatus = (key: string, isTaskFinished: boolean) => {
+        //  Criando um novo Array com State atualizado.
+        const updatedTasks = tasks.map((task) => {
+            if (task.key === key) {
+                return { ...task, isTaskFinished };
+            }
+            return task;
+        });
+
+        ////  Atualizar o State ***tasks*** com o novo Array.
+        setTasks(updatedTasks)
+        console.log(updatedTasks)
     }
 
     return (
@@ -70,7 +88,7 @@ export const Home = () => {
                         <div className={styles.concluidas}>
                             Tarefas concluídas
                             <span className={styles.contadorDeTarefa}>
-                                {createdTasks}
+                                {completedTasks}
                             </span>
                         </div>
                     </header>
@@ -86,14 +104,16 @@ export const Home = () => {
                                     </div>
                                 </div>)
                             : tasks.map((task) => {
-                                return (
+                                return(
+                                    
                                     <Task
                                         key={task.key}
                                         task={task.task}
-                                        finished={task.finished}
+                                        isTaskFinished={task.isTaskFinished}
+                                        onUpdateTaskStatus={updateTaskStatus}
                                     />
-                                )
-                            })
+                                
+                            )})
 
 
                         }
@@ -102,4 +122,5 @@ export const Home = () => {
             </div>
         </div>
     )
+
 }

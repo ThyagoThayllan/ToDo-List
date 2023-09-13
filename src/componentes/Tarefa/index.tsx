@@ -5,22 +5,27 @@ import { useState } from 'react'
 interface TarefaProps {
   key: string,
   task: string,
-  finished?: boolean
+  isTaskFinished: boolean,
+  onUpdateTaskStatus: (key: string, isTaskFinished: boolean) => void,
 }
 
-export const Task = ({ task, finished }: TarefaProps) => {
+export const Task = ({ task, isTaskFinished, onUpdateTaskStatus }: TarefaProps) => {
 
-  const [ isFinished, setIsFinished ] = useState(finished || false)
+  const [isFinished, setIsFinished] = useState(false)
 
   const handleStatus = () => {
 
     setIsFinished(!isFinished)
+
+
+    //  Chamando a função que dará acesso ao State no componente Home.
+    onUpdateTaskStatus(task, !isTaskFinished)
   }
 
   return (
     <div className={styles.task}>
       <button
-        className={isFinished ? styles.finishedTask : styles.pendingTask}
+        className={ isFinished === true ? styles.finishedTask : styles.pendingTask}
         onClick={() => handleStatus()}
       >
         <CheckCircle size={24} />
