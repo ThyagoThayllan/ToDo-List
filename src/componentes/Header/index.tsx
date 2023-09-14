@@ -11,7 +11,7 @@ export function Header() {
 
             <nav className={styles.menuNav}>
                 <ul>
-                    <li><Link to='/'>Início</Link></li>
+                    <li><Link to='/ToDo-List'>Início</Link></li>
                     <li><Link to='/historico'>Histórico</Link></li>
                     <li><a href="#">Sobre</a></li>
                 </ul>
