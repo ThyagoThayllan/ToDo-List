@@ -59,6 +59,14 @@ export const Home = () => {
         console.log(updatedTasks)
     }
 
+    const deleteTask = (keyToBeDelete: string) => {
+        //  Filtra o array de tarefas para remover a tarefa com a key correspondente
+        const updatedTasks = tasks.filter((task) => task.key !== keyToBeDelete)
+
+        //  Atualizando o State de Tasks com o novo array, sem a task deletada.
+        setTasks(updatedTasks)
+    }
+
     return (
         <div className={styles.home}>
             <div>
@@ -88,7 +96,7 @@ export const Home = () => {
                         <div className={styles.concluidas}>
                             Tarefas concluídas
                             <span className={styles.contadorDeTarefa}>
-                                {completedTasks}
+                                {completedTasks === 0 ? completedTasks : `${completedTasks} de ${createdTasks}`}
                             </span>
                         </div>
                     </header>
@@ -111,6 +119,7 @@ export const Home = () => {
                                         task={task.task}
                                         isTaskFinished={task.isTaskFinished}
                                         onUpdateTaskStatus={updateTaskStatus}
+                                        onDeleteTask={deleteTask}
                                     />
                                 
                             )})

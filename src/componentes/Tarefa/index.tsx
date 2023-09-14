@@ -1,15 +1,20 @@
-import { Trash, CheckCircle } from 'phosphor-react'
+import { Trash } from 'phosphor-react'
 import styles from './styles.module.css'
 import { useState } from 'react'
+import backgroundStatusIcon from '../../assets/backgroundStatusIcon.svg'
+import borderStatusIcon from '../../assets/borderStatusIcon.svg'
+import checkIcon from '../../assets/checkIcon.svg'
+import pendingTask from '../../assets/pendingTask.svg'
 
 interface TarefaProps {
   key: string,
   task: string,
   isTaskFinished: boolean,
   onUpdateTaskStatus: (key: string, isTaskFinished: boolean) => void,
+  onDeleteTask: (key: string) => void
 }
 
-export const Task = ({ task, isTaskFinished, onUpdateTaskStatus }: TarefaProps) => {
+export const Task = ({ task, isTaskFinished, onUpdateTaskStatus, onDeleteTask }: TarefaProps) => {
 
   const [isFinished, setIsFinished] = useState(false)
 
@@ -22,20 +27,35 @@ export const Task = ({ task, isTaskFinished, onUpdateTaskStatus }: TarefaProps) 
     onUpdateTaskStatus(task, !isTaskFinished)
   }
 
+  const handleDelete = () => {
+    //  Chamando a função onDeleteTask para quando clicar no botão.
+    onDeleteTask(task)
+  }
+
   return (
     <div className={styles.task}>
       <button
-        className={ isFinished === true ? styles.finishedTask : styles.pendingTask}
-        onClick={() => handleStatus()}
+        onClick={handleStatus}
       >
-        <CheckCircle size={24} />
+        {
+          isFinished === true
+            ? (<div className={styles.finishedTask}>
+                <img src={borderStatusIcon} />
+                <img src={backgroundStatusIcon} />
+                <img src={checkIcon} />
+              </div>)
+            : (<img src={pendingTask} className={styles.pendingTask} />)
+        }
       </button>
       <p className={styles.taskContent}>
         {task}
       </p>
-      <div className={styles.deleteTask}>
+      <button 
+        className={styles.deleteTask}
+        onClick={handleDelete}
+      >
         <Trash size={24} />
-      </div>
+      </button>
 
     </div>
   )

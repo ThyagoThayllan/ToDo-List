@@ -7,28 +7,60 @@
     border: 1px solid #333333;
     border-radius: 10px;
     align-items: center;
-    
 }
 
 .task + .task {
     margin-top: 1rem;
 }
 
+.task button {
+    background: transparent;
+    border: 0;
+    display: flex;
+    justify-content: center;
+}
+
 .finishedTask {
     line-height: 0;
-    background: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.finishedTask img {
+    position: absolute;
+    transform: scale(1.2);
+    transition: all 0.2s;
+}
+.finishedTask:hover img {
+    cursor: pointer;
+    filter: drop-shadow(0 0 2px #8284FA);
 }
 
 .pendingTask {
-    line-height: 0;
-    background: orangered;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.2);
+    transition: all 0.2s;
+}
+.pendingTask:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 2px #4EA8DE);
 }
 
 .taskContent {
     font-size: 0.875rem;
     line-height: 1.6;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .deleteTask {
     line-height: 0;
+    color: #808080;
+    transition: all 0.2s;
+}
+.deleteTask:hover {
+    color: #d31c1c;
+    cursor: pointer;
 }
