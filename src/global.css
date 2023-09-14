@@ -10,3 +10,9 @@ body {
     background: #1A1A1A;
     color: #F2F2F2;
 }
+
+@media (max-width: 820px) {
+    * {
+        font-size: 0.875rem;
+    }
+}

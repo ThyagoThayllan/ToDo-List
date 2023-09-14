@@ -94,7 +94,7 @@ export const Home = () => {
                         </div>
 
                         <div className={styles.concluidas}>
-                            Tarefas concluídas
+                            Concluídas
                             <span className={styles.contadorDeTarefa}>
                                 {completedTasks === 0 ? completedTasks : `${completedTasks} de ${createdTasks}`}
                             </span>
